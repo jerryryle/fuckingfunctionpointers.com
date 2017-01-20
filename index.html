@@ -187,11 +187,20 @@
     </div>
 </div>
 <div>
-    <h2>As a <strong>typedef</strong>:</h2>
+    <h2>As a <strong>function pointer typedef</strong>:</h2>
     <div class="syntax"><code><span class="ckeyword">typedef returnType</span> (*<span
             class="cidentifier">typeName</span>)(<span class="cparameters">parameterTypes</span>);</code></div>
     <div class="example"> (<a
             href="http://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(j:1,options:(compileOnChange:'0'),source:'/*+Use+typedef+to+declare+the+name+%22my_function_ptr_t%22%0A+++as+an+alias+whose+type+is+a+pointer+to+a+function+that%0A+++takes+one+integer+argument+and+returns+an+integer+*/%0Atypedef+int+(*my_function_ptr_t)(int)%3B%0A%0A/*+Declare+a+simple+function+that+takes+one+integer%0A+++argument+and+returns+an+integer.+*/%0Aint+my_function(int+foo)%3B%0A%0Aint+main(void)+%7B%0A++/*+Define+a+function+pointer+variable+and+point+it+to%0A+++++the+function.+*/%0A++my_function_ptr_t+my_function_pointer+%3D+my_function%3B%0A++%0A++/*+Invoke+the+function+via+the+function+pointer.+*/%0A++return+my_function_pointer(0)%3B%0A%7D%0A%0A/*+Define+the+simple+%22my_function%22+function.*/%0Aint+my_function(int+foo)+%7B%0A++return+foo%3B%0A%7D%0A'),l:'5',n:'1',o:'C%2B%2B+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:clang_trunk,filters:(b:'0',commentOnly:'0',directives:'0',intel:'0'),options:'-x+c+--std%3Dc99'),l:'5',n:'0',o:'%231+with+x86-64+clang+(trunk)',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4"
+            target="_top">example code</a>)
+    </div>
+</div>
+<div>
+    <h2>As a <strong>function typedef</strong>:</h2>
+    <div class="syntax"><code><span class="ckeyword">typedef returnType</span> <span
+            class="cidentifier">typeName</span>(<span class="cparameters">parameterTypes</span>);</code></div>
+    <div class="example"> (<a
+            href="http://godbolt.org/#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAKxAEZTUAHAvVAOwGdK0BbRvADaYA8mwDCCAIZtgmEAHIADPICUpDqgCuxZHPkB6AFQBqAKodMxggE9GmLADMrqY1mQDJxSwQSW2knksAUgAmEJ5rAH0HTTZkFnZIglCQoMUAQWMsyQ5jaTyBPBzjAHcEVAsrW0s8XMljGLiEtispAitJAGtMDjTMrPYatgJMWWI84mBNQOG8tnRjLwJtTjnjPGHRzHHDfT6bO0d12Yjo2PjWNiSIDYIVIIBmACE%2BvqNjABFMd09Leo48HwhA1zs1WpJ2gQuj1jINjiMxn0shMpjN2tIFksVnUWrctsQAHRmSo%2BbzVRxIrIbDgjSQLVBOA4bYCwzSQ3zGTDDPBeYwA4D%2BZZeIm7PqnRoXRLtcWgy6PF4ZPq3Yw8SQbCAAN1QeHQKmMQQA7Ar%2Bu8vg4Nn8QU1LsZGNrNuMNZ4igAjYEY2329qEZyU5Gkq2StgivYZLIy61S4yGCNByJ2vHjR4fFVRCXNeWUynvACSbC13ValnTNo1RSLgbBCYdIcpWOILVjzXjXu2EEU92erwNH1eGVNmHNbG8HIBQOCYSbcrClcuRIAcqgRn6fBCK7x%2BEJxiVBAJbcQMJpdGttgfxngnNYtH7JMhkDquVCBAJrMZZOzLPzBdpLCUDzIiQAFQQWp1lyQY/RdLlBx9BljE0AEZArEt2D5PABQhH8qkOQdfTDLI3A8XkAxQlooIcEhLEcDZmXWAgiVMOJUB4NEV1Hb52AWTxUUfY4Ky/TDiJcCwR0wP1TxIWsMmVKd2BuWYKJcIxSHhT1UF2PVDWNLJ6xaRTM0VHs%2BlUUgBAUABWeRSDYBRaCs1AFDEUIXhCJ4%2BS0HQJweOzSAIBRlBUNROhAczFFMhQABYrJspR7IUKyuDCvzYrUOBYCQDdBG2chuGYzdthQDwZCSYhYk6UhzQEEZiC4CAXX8qzeDRUQXwa0h8C8C4NR6Nq8TMlKGGYS4uHkABaAAPYxkGMUbRppdBk2QABOJaTP6yzrLahz5FCbzSkIBBjHGgAOAA2UbToiqaipZCACFKthOhUKzkoCoKQrC/qos22KGHi9QQCShrAvC%2BQQmirb/te1Q1G6mrLhACKgA%3D%3D"
             target="_top">example code</a>)
     </div>
 </div>
