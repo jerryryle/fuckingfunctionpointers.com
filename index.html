@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>How Do I Declare A Function Pointer in C?</title>
+    <meta content='Fucking Function Pointers: Examples for declaring function pointers in C' name='description'>
+    <meta content='function pointer, C, syntax, programming' name='keywords'>
+
+    <style type="text/css">
+        body {
+            background-color: #2b2b2b;
+            color: #a9b7c6;
+            font-family: Lucida Grande, sans-serif;
+            font-size: 20px;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 1.5em;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 1.5em;
+            font-weight: normal;
+        }
+
+        h3 {
+            font-size: 40px;
+            margin-top: 0em;
+            margin-bottom: 0.5em;
+            font-weight: normal;
+        }
+
+        strong {
+            color: #3162c4;
+        }
+
+        code {
+            display: block;
+            font-family: Monaco, Menlo, monospace;
+            margin-bottom: 1em;
+        }
+
+        pre {
+            display: block;
+            font-family: Monaco, Menlo, monospace;
+            margin: 0em;
+        }
+
+        footer {
+            font-size: 12px;
+            margin-top: 200px;
+            opacity: 0.5;
+            text-align: right;
+        }
+
+        a {
+            color: #6897bb;
+            text-decoration: none;
+        }
+
+        .syntax {
+            margin-bottom: 1em;
+            margin-left: 40px;
+            margin-top: 1.5em;
+        }
+
+        .example {
+            font-size: 15px;
+            margin-bottom: 1em;
+            margin-left: 40px;
+            margin-top: 1em;
+        }
+
+        .disclaimer {
+            line-height: 1.5em;
+            margin-top: 3em;
+        }
+
+        .ckeyword {
+            color: #cc7832;
+        }
+
+        .cidentifier {
+            color: #9373a5;
+        }
+
+        .cparameters {
+            color: #908b25;
+        }
+    </style>
+    <style media="print">
+        body {
+            background-color: #FFFFFF;
+            font-size: 16px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 1em;
+        }
+
+        footer {
+            font-size: 10px;
+            margin-top: 40px;
+        }
+
+        .syntax {
+            margin-bottom: 1em;
+            margin-left: 20px;
+            margin-top: 1.5em;
+        }
+
+        .example {
+            display: none;
+        }
+    </style>
+    <!-- Generated with https://realfavicongenerator.net -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <script>var _bftn_options = { theme: 'glitch' };</script><script src="https://widget.battleforthenet.com/widget.js" async></script>
+
+</head>
+
+<body>
+<h1>How Do I Declare a Function Pointer in C?</h1>
+<div>
+    <h2>As a <strong>variable</strong>:</h2>
+    <div class="syntax"><code><span class="ckeyword">returnType</span> (*<span class="cidentifier">variableName</span>)(<span
+            class="cparameters">parameterTypes</span>) = function_name;</code></div>
+    <div class="example"> (<a
+            href="http://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(j:1,options:(compileOnChange:'0'),source:'%23include+%3Cstddef.h%3E%0A%0A/*+Declare+a+simple+function+that+takes+one+integer%0A+++argument+and+returns+an+integer.+*/%0Astatic+int+my_function(int+foo)%3B%0A%0A/*+Define+a+global+variable+named+%22my_function_pointer%22%0A+++whose+type+is+a+pointer+to+a+function+that+takes+one%0A+++integer+argument+and+returns+an+integer.+Initialize%0A+++this+to+NULL.+*/%0Aint+(*my_function_pointer)(int)+%3D+NULL%3B%0A%0Aint+main(void)+%7B%0A++/*+Point+the+function+pointer+to+the+simple+function+*/%0A++my_function_pointer+%3D+my_function%3B%0A%0A++/*+Invoke+the+function+via+the+global+function%0A+++++pointer+variable.+*/%0A++return+my_function_pointer(0)%3B%0A%7D%0A%0A/*+Define+the+simple+%22my_function%22+function.*/%0Astatic+int+my_function(int+foo)+%7B%0A++return+foo%3B%0A%7D%0A'),l:'5',n:'1',o:'C%2B%2B+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:clang_trunk,filters:(b:'0',commentOnly:'0',directives:'0',intel:'0'),options:'-x+c+--std%3Dc99'),l:'5',n:'0',o:'%231+with+x86-64+clang+(trunk)',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4">example
+        code</a>)
+    </div>
+</div>
+<div>
+    <h2>As a <strong>static const variable</strong>:</h2>
+    <div class="syntax"><code>static <span class="ckeyword">returnType</span> (* const <span class="cidentifier">variableName</span>)(<span
+            class="cparameters">parameterTypes</span>) = function_name;</code></div>
+    <div class="example"> (<a
+            href="http://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(j:1,options:(compileOnChange:'0'),source:'/*+Declare+a+simple+function+that+takes+one+integer%0A+++argument+and+returns+an+integer.+*/%0Astatic+int+my_function(int+foo)%3B%0A%0A/*+Define+a+global+variable+named+%22my_function_pointer%22%0A+++whose+type+is+a+pointer+to+a+function+that+takes+one%0A+++integer+argument+and+returns+an+integer.+Limit+its%0A+++visibility+to+this+translation+unit+and+make+it%0A+++const.+Initialize+it+to+point+to+the+simple+function%0A+++declared+above.+*/%0Astatic+int+(*+const+my_function_pointer)(int)+%3D+my_function%3B%0A%0Aint+main(void)+%7B%0A++/*+Invoke+the+function+via+the+global+function%0A+++++pointer+variable.+*/%0A++return+my_function_pointer(0)%3B%0A%7D%0A%0A/*+Define+the+simple+%22my_function%22+function.*/%0Astatic+int+my_function(int+foo)+%7B%0A++return+foo%3B%0A%7D%0A'),l:'5',n:'1',o:'C%2B%2B+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:clang_trunk,filters:(b:'0',commentOnly:'0',directives:'0',intel:'0'),options:'-x+c+--std%3Dc99'),l:'5',n:'0',o:'%231+with+x86-64+clang+(trunk)',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4">example
+        code</a>)
+    </div>
+</div>
+<div>
+    <h2>As an <strong>array</strong>:</h2>
+    <div class="syntax"><code><span class="ckeyword">returnType</span> (*<span
+            class="cidentifier">arrayName</span>[])(<span class="cparameters">parameterTypes</span>) = {function_name0,
+        ...};</code></div>
+    <div class="example"> (<a
+            href="http://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(j:1,options:(compileOnChange:'0'),source:'/*+Declare+two+simple+functions+that+each+take+one%0A+++integer+argument+and+return+an+integer.+*/%0Aint+my_function1(int+foo)%3B%0Aint+my_function2(int+foo)%3B%0A%0A/*+Define+a+global+variable+named+%22my_function_pointers%22%0A+++whose+type+is+an+array+of+pointers+to+functions+that+%0A+++each+take+one+integer+argument+and+return+an+integer.%0A+++Initialize+this+with+an+array+of+pointers+to+the+%0A+++functions+declared+above.+*/%0Aint+(*my_function_pointers%5B%5D)(int)+%3D+%7Bmy_function1,+my_function2%7D%3B%0A%0Aint+main(void)+%7B%0A++/*+Invoke+the+first+function+in+the+global+function%0A+++++pointer+array.+*/%0A++return+my_function_pointers%5B0%5D(0)%3B%0A%7D%0A%0A/*+Define+the+simple+%22my_function%22+function.*/%0Aint+my_function1(int+foo)+%7B%0A++return+foo%3B%0A%7D%0A%0A/*+Define+the+simple+%22my_function%22+function.*/%0Aint+my_function2(int+foo)+%7B%0A++return+foo%3B%0A%7D%0A'),l:'5',n:'1',o:'C%2B%2B+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:clang_trunk,filters:(b:'0',commentOnly:'0',directives:'0',intel:'0'),options:'-x+c+--std%3Dc99'),l:'5',n:'0',o:'%231+with+x86-64+clang+(trunk)',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4">example
+        code</a>)
+    </div>
+</div>
+<div>
+    <h2>As a <strong>parameter to a function</strong>:</h2>
+    <div class="syntax"><code>int my_function(<span class="ckeyword">returnType</span> (*<span class="cidentifier">parameterName</span>)(<span
+            class="cparameters">parameterTypes</span>));</code></div>
+    <div class="example"> (<a
+            href="http://godbolt.org/#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAKxAEZTUAHAvVAOwGdK0BbRvADaYA8mwDCCAIZtgmEAHIADPICUpDqgCuxZHPkB6AFQBqACKZkAycUzHJxgGaa2yFu2MEpBD5IDWmDg8Ad1Q7YmBNHkw2Ai4AUkUAQWMUlLiAJnTkSQEBACNJZF8M9LtjRlQ8GMxiD1D7Jxc3Ng8vH39A9kwE5NS%2B/tSAN0r0csrq2usIqJi7NlGbAm1OYx6B9dTpYyqCTFliADo1vpLNDhrGa0keErLhvFGKnZqew30eneMeAE8AfUbXKw2BBPhBDNlcgUiioIPdRoY1MY4cZDGcLlceCo4gBmABCPR6RjMFisNjKEPyhV8jmcgPcnkk3gIfgCxi6SJGY2exGOYWm0W80gWmCWxBWW2e%2BwOKPeSU%2BP1%2ByDy/1pzVhnNR52Il2I1yxeIJctmPEkVXVDxUqwA7PikikiWIbIzbBLqvskdY8JI8kJHCRWrYKVDfNK3sd5X8dddVtjTMZFDjbYljkSAJJsYb%2BAM0ppA0jlSQcDhVYDbFr2J4TOoB3kpINUnN08vzbOSmp8yIC0Oy3qLZZfP4AtUKpUq3PsfMZABsCqjmMTBKtpkNiSJ5gcVRdjearUZxnQqFZbFQnhLxjymm8VUztk8gZylKKpF5lyLZ8I2YpNQAtIxiKhBgeTBRimTsYm7D5jUHVUgRBWYwXraFzXhRFkU1dFdXnJI4htY4%2BzFYxEN8CA0W1DF9STHDl2wpI10wDc2C3IjtyBXdvHwlY70Ih8fz/ACgPQXlQJmAgIKNbwR2VIdYLQ0i5yxbDcLtMtvEMHY5xjOM4NUlQ5IxBdlLwBxjAgMAwHU8jrSTPoOOMb9aAM3oqLwkV%2BzUmI50c5yklUUgBAUABWeRSDYBRaGC1AFDEDJ8XSXFjA0bRdFWdJsXC0gCAUZQVDUXwQACxQ/IUAAWYLQqUCKFGCrhCsyiq1DgWAkF4fghDICgIBawQahQKwZF%2BAhiGcXxSA3ARdmILgIDyLLgt4ETRAEb5ZtIfAbEBQYAhW55/PqhhmCBLh5G/AAPQi7O/DgCEE2NkAATju3zdqCkKVsi%2BQMjS4wgkIBBjBOgAOKdvynYrCL60sIEG4aVGCursty/LCt20rXoqhgqvUEBatmnKivkdIyrezH4dUNRNsmoEQGKoA%3D%3D">example
+        code</a>)
+    </div>
+</div>
+<div>
+    <h2>As a <strong>return value from a function</strong>:</h2>
+    <div class="syntax"><code><span class="ckeyword">returnType</span> (*my_function(int, ...))(<span
+            class="cparameters">parameterTypes</span>);</code></div>
+    <div class="example"> (<a
+            href="http://godbolt.org/#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAKxAEZTUAHAvVAOwGdK0BbRvADaYA8mwDCCAIZtgmEAHIADPICUpDqgCuxZHPkB6AFQBqACKZkAycUzHJxgGaa2yFu2MEpBD5IDWmDjs2Yzw2AkxZYmNGa0keTHCo6XRjAFJFAEFjbJsCbU47R2dXVmDGVFDE4wB3QgQPAE9GW3QtACMhCEMVCFbNDswVADp0rOyAFQQ8QNqBATtXYwE8fyC7YmJJBpC2LAAPUOAilzc2IeNDfVG%2BgeMungaAfScT0ohKlR6boRVUgGYAEKjUZGMwWKw2QocBLGVAOY4ldiBTySbwEPy2dgtdpCNKZbLrYCaeJhIIpXL5QrfTDnS7XHG2B6PZBtZ7FU6PWi9BnRWI8X6A%2Bn9XFMlls17sR4AJm5wtsMU2/P%2BQMyoPMlmstnsWAckk0Am8L0RwWqU2Q9VaAWMbFQnkOtKumWpxlFrM8zl8stuCriApVGVGlRdklCEAAbhV0Co0gB2f3ZUFiSRzF1PI2nDyoYy5Yh4TBhrUIjPlSqYMijAnZUIeKaBZCSaGkGuYti2U14c3GDgAR00msCWiioUYmgIDorxmd9zT7NKjxLYTLXwZ0f%2BplT4uNEEUfonE8Tyfmnls6dK0Qqi6i7c7HAQWgEKR7fchx4nBOHo%2BMYeTmkx8IArOO%2BLZgklJMqekoLokED/rumSpDGpjAqqJjmA4oSFhBwQot4FLEAU9hYeepZRG0DaYCkb7uNIOz7EBGRToY4Gzuw7ykqE%2ByfF6PzAnGE4cLUBCdmxnEIfGBL1tCxiKCAIF5PhG5ilhnLKm%2BxiSbYtCyXhwSupuHJSqpwHZDqeoGtpoEKXp7psL4RljAhSHwYhyEZGqmDoa2hT1nMZHIL4RZnjhcn5MiCC2E%2Bmqwg4b7HtExCoGGeBYCkPrxIk9HOnpylcs6aW/M54k6byioXCVcT2Y5IKoR5GHeYefkBURwU6YEUgCPCcLNniYzxYlyUUeV6VlplPLZSxbDStx8p8gVAZ8cBxVpcY%2BjGIZgrOU5bk1Z5hY%2BQIjWBe4LWWQUcWMAlSUpT1BJpQkZY1HUWjeNI2w8BgeDofWpwcKNcqKW6CAetNQ1zWJE5LXylUufBmSqKQAgKP%2B8ikGwCi0CjqAKGIqRSkCeNdoOuhpFKfwY6QBAKMonykL4ID/ooCMKAALCjaNKJjCgo1wjOUxzahwLASC8PwQhkBQEAi4IZYoFYMiPAQxAeqQ6EGmWXAQG0VMo7wJIEKIAgNNrpD4DYJQFlwHPkIuiP8wwzClJbAC0ezqcYTtOxwBDoGuyAAJx%2B/DtvI6jxtY/IuNk49njGHsAAcABsTsJ8z6ly0cECKx6Kgo3z1NqHTDNM/IrOh1b4fcyAvPazTttSmzYdcxTNdqAWxAcKUIDM0AA%3D%3D%3D">example
+        code</a>)
+    </div>
+</div>
+<div>
+    <h2>As a <strong>cast</strong> (<a href="http://mindtribe.com/2015/06/do-c-callbacks-like-this-not-like-that/">but
+        try not to cast functions</a>):</h2>
+    <div class="syntax"><code>... (<span class="ckeyword">returnType</span> (*)(<span
+            class="cparameters">parameterTypes</span>))my_expression ...</code></div>
+    <div class="example"> (<a
+            href="http://godbolt.org/#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAKxAEZTUAHAvVAOwGdK0BbRvADaYA8mwDCCAIZtgmEAHIADPICUpDqgCuxZHPkBSAEwBmPG2QDNWANT7jYjgXQC8AIwB0CO9n2KAgr5%2BAPQAVNYAIpgWksSY1pLWvIwxeBps1gBmmuYs7NYEUgTWqYmofJIsrkLWAO6EXv7WTQCOGsQEYPIc1pgAHoxRBJjo1hx4wGwV2pju1gDqcQDWbKg1%2BYW1mJ0CAtaumIFNoyQsMsVsQ7LEHKTHm6MDyHiSLgBecQUHjU1GhgBuqDwIzQnCKIV%2B1mSxEkPEwQ2u8TYI00HDivzMRRBjms4MMhkOTTMjkwknQ7gJtm%2B1gAEphYp1up9rK0ThAVNZ0KhkJpYRcKqx0hkSNZYhk6ZhzHIKQgCARGFwgkEXGxNL13PgZmw4UEeNIgsYgiz2oEQkFAo5%2BchzpiylDMAB9DGYK4cCAY0qgnG3d1YsEqOwAIUCgXdurMEABQPZ%2BgA7EHvqEIpgMmY4tJ4sRoQBPayoDLW510xmoY7tHFm76hrP2lU8fbXfQAViDjfCtmMbdjAfo1gAbLcACwADn71kMA9uxkUjcnikUhluC%2BsiluMdujdj4UDwYTYQAyid1mnM5Ic3mCy7zpCBJJdLcUWZgEeKU0kik0plsshcukanEsCmWrxK4qB/DM1gBlEkgoh8CBfH4RxNGMExTLEHKoJgHBsJ0RR9LeBACDmuoEMgCDMm0HRdD0/SDMML6jOMkwENMtx/tYWrDPkJYwfEiSSNiRDxJGwK2oIdL0TUMRsI%2BHBBHSxAkBwsymgSRoEBAPDVrW9Y3PRRxjO8eYaVpPI6SoQQGZgRmaTWplFk2AaKE24RqHpSF4IZGTGbZdb2c2Tmtq5VKIdYboXBAIQqBGgIiZ6IS3MJHrYpFKhvrEjoXIW1z%2BsY8YBLu1h%2BMQriENCxCCDmsTMcQ6RMim1xFE6VyZMKWRsMpFYISKcLaOkNnaX5jnOdu/ibjuwRhJEgGwXEaWpHkbXfgKHXmgQlrWqU5TpU1RYQL6G0hPVji3Pt7ohKiILoP6o1xgSiaQcg0GovcHCPM8bycUyUIwnCRasf%2B7A4fRHEjIJj0CXBPCZApUO/Il%2B24oY1hwbEswLHxbD0WMfCERy4pirEkpHjwK3fFVvU4kdRQALQ4hd7DoCNAQxluo3%2BPdACqAAqswAJKdGBkIKX8QKfQgJTg6cT54Tj/6pI%2BEqaFoHCERS%2ByPTxvPodh8hFAUZiLNYWZaKMCBaAIIycsUevi90klZrMXOFBSi0/pCgKZcQfHYiUsQvLjcGSH8WbU1ISKcdIIyMICqIcBSxuaC1XsaLC5xjPgyt7JowBKRBUE8QnnRoUKOiPs%2BVJJGJxAMsjkcnfxUvxAI9vdH00ex0bJuCdHQwXO9FKpBwmiYbMACaJscGbmgW9YiyYJgjBHqMaADLm%2BaS90/HWC4PCEHRVJb%2B3YxVOBvOgiSIznpLZdMhKLDF1%2BP4UshTEsdbNccJIBNcd7RTsLjTJErfVhPCOOVIiSiyXq7AUeNAKEBgYQVEAgMiOzgp%2BHIMD9gCFWBSTkmF2KoCKLEZomg8BoSZJLWocF0jJA4GMM4hAf5qTZOSKkTsSg70QUvHud93ochhJIWQP9d70PhIwKqN84IUmAb9BEnweBILArnXmRQg4xW6IPYedt6hHjIexOyZAKSfD0SQLA5UziRygY/AUNdyY1XyFmAYrCuqUhcX4AQGhRjzxANKWUjAQCKl3kiAg5V9juF4EEQwihaCNiCIoXsQROTU2QMk/2rhbyLA4NTFwc9qb6yySsAg2S8C5IKBUTqKl2YWTWiwK0PpbQxAdDta4e12DYkSodMhx0kpFA6fTJE11ghmlulUwkFwemUy6QQDKlw6TtjbGFG0cUVBUyZoqMZSzkr9PQDMrK8zQr1OWdstZQQfijO6tVdInSGq7OarTc6UQGa3PErlQIioxr%2BFUKQAQChGzyFIGwBQtB/moAUGIIwQZDABmONoXQtgTDAtIAQBQygVBqEWCARsK4fnyAHP8wFSgQUKH%2BVwFcyLCVqDgLAJAlchBkAoK0vgVcUA3hkPaEJ2RFikBTAIUBlBXAov%2BbwXkBBRCEUFaQfAsQlpKIlU6HFqKGDMAFFweQ1NeiJGsNTamjhGYdmQAATgNV8nFfyAUStBQYBFtQdG9BHNTXsA5EisqfBADlbBFgqH%2BeS1F6LMXYoUHi81hKGDEvUCAMlgq0XfIUIYfFFqw0%2BtUGoMC1wBQgAHEAA%3D%3D%3D">example
+        code</a>)
+    </div>
+</div>
+<div>
+    <h2>As a <strong>function pointer typedef</strong>:</h2>
+    <div class="syntax"><code><span class="ckeyword">typedef returnType</span> (*<span
+            class="cidentifier">typeName</span>)(<span class="cparameters">parameterTypes</span>);</code></div>
+    <div class="example"> (<a
+            href="http://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(j:1,options:(compileOnChange:'0'),source:'/*+Use+typedef+to+declare+the+name+%22my_function_ptr_t%22%0A+++as+an+alias+whose+type+is+a+pointer+to+a+function+that%0A+++takes+one+integer+argument+and+returns+an+integer+*/%0Atypedef+int+(*my_function_ptr_t)(int)%3B%0A%0A/*+Declare+a+simple+function+that+takes+one+integer%0A+++argument+and+returns+an+integer.+*/%0Aint+my_function(int+foo)%3B%0A%0Aint+main(void)+%7B%0A++/*+Define+a+function+pointer+variable+and+point+it+to%0A+++++the+function.+*/%0A++my_function_ptr_t+my_function_pointer+%3D+my_function%3B%0A++%0A++/*+Invoke+the+function+via+the+function+pointer.+*/%0A++return+my_function_pointer(0)%3B%0A%7D%0A%0A/*+Define+the+simple+%22my_function%22+function.*/%0Aint+my_function(int+foo)+%7B%0A++return+foo%3B%0A%7D%0A'),l:'5',n:'1',o:'C%2B%2B+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:clang_trunk,filters:(b:'0',commentOnly:'0',directives:'0',intel:'0'),options:'-x+c+--std%3Dc99'),l:'5',n:'0',o:'%231+with+x86-64+clang+(trunk)',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4">example
+        code</a>)
+    </div>
+</div>
+<div>
+    <h2>As a <strong>function typedef</strong>:</h2>
+    <div class="syntax"><code><span class="ckeyword">typedef returnType</span> <span
+            class="cidentifier">typeName</span>(<span class="cparameters">parameterTypes</span>);</code></div>
+    <div class="example"> (<a
+            href="http://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(j:1,options:(compileOnChange:'0'),source:'/*+Use+typedef+to+declare+the+name+%22my_function_t%22%0A+++as+an+alias+whose+type+is+a+function+that+takes%0A+++one+integer+argument+and+returns+an+integer+*/%0Atypedef+int+my_function_t(int)%3B%0A%0A/*+Declare+a+simple+function+that+takes+one+integer%0A+++argument+and+returns+an+integer.+Here+we+use+the%0A+++typedef+instead+of+typing+out+the+entire+signature.%0A+++This+may+look+a+bit+odd+to+some+developers.+Someone%0A+++more+used+to+function+pointer+typedefs+might+mistake%0A+++it+as+the+definition+of+a+function+pointer+variable.%0A+++So+I!'m+not+sure+I!'d+recommend+it.+But,+as+shown+%0A+++below,+it!'s+possible.+*/%0Astatic+my_function_t+my_function%3B%0A%0Aint+main(void)+%7B%0A++/*+Define+a+function+pointer+variable+and+point+it+to%0A+++++the+function.+*/%0A++my_function_t+*my_function_pointer+%3D+my_function%3B%0A++%0A++/*+Invoke+the+function+via+the+function+pointer.+*/%0A++return+my_function_pointer(0)%3B%0A%7D%0A%0A/*+Define+the+simple+%22my_function%22+function.+*/%0Astatic+int+my_function(int+foo)+%7B%0A++return+foo%3B%0A%7D%0A'),l:'5',n:'1',o:'C%2B%2B+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:clang_trunk,filters:(b:'0',commentOnly:'0',directives:'0',intel:'0'),options:'-x+c+--std%3Dc99'),l:'5',n:'0',o:'%231+with+x86-64+clang+(trunk)',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4">example
+        code</a>)
+    </div>
+</div>
+<div class="disclaimer"> This site is not intended to be an exhaustive list of all possible uses of function
+    pointers.<br> If you find yourself needing syntax not listed here, it is likely that a <strong>typedef</strong>
+    would make your code more readable.<br> <br> Unable to access this site due to the profanity in the URL? <strong><a
+            href="http://goshdarnfunctionpointers.com">http://goshdarnfunctionpointers.com</a></strong> is a more
+    work-friendly mirror.
+</div>
+<footer>By <a href="https://jerryryle.com"
+              title="Jerry's portfolio site">Jerry Ryle</a>, who fucking loves function pointers.<br/> Inspired by Mike
+    Lazer-Walker's <a href="http://fuckingblocksyntax.com">Block Syntax</a>.<br/> <a
+            href="https://github.com/jerryryle/fuckingfunctionpointers.com"
+            title="Github repo for this website">Make it better! Send me a pull request!</a><br/>
+</footer>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-90590625-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>
