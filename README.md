@@ -1,4 +1,4 @@
 # Fucking Function Pointer Syntax
-Syntax is hard. http://fuckingfunctionpointers.com
+Syntax is hard. https://fuckingfunctionpointers.com
 
 Inspired by http://fuckingblocksyntax.com
