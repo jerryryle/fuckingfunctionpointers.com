@@ -205,6 +205,25 @@
         code</a>)
     </div>
 </div>
+<h1>What about C++11?</h1>
+<div>
+    <h2>You can also use a <strong>function pointer type alias</strong>:</h2>
+    <div class="syntax"><code><span class="ckeyword">using</span>
+        <span class="cidentifier">typeName</span> = <span class="ckeyword">returnType</span> (*)(<span class="cparameters">parameterTypes</span>);</code></div>
+    <div class="example"> (<a id="function_pointer_typedef_example"
+                              href="https://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,selection:(endColumn:12,endLineNumber:2,positionColumn:12,positionLineNumber:2,selectionStartColumn:12,selectionStartLineNumber:2,startColumn:12,startLineNumber:2),source:'/*+Use+using+to+declare+the+name+%22my_function_ptr_t%22%0A+++as+an+alias+whose+type+is+a+pointer+to+a+function+that%0A+++takes+one+integer+argument+and+returns+an+integer+*/%0Ausing+my_function_ptr_t+%3D+int+(*)(int)%3B%0A%0A/*+Declare+a+simple+function+that+takes+one+integer%0A+++argument+and+returns+an+integer.+*/%0Aint+my_function(int+foo)%3B%0A%0Aint+main(void)+%7B%0A++/*+Define+a+function+pointer+variable+and+point+it+to%0A+++++the+function.+*/%0A++my_function_ptr_t+my_function_pointer+%3D+my_function%3B%0A++%0A++/*+Invoke+the+function+via+the+function+pointer.+*/%0A++return+my_function_pointer(0)%3B%0A%7D%0A%0A/*+Define+the+simple+%22my_function%22+function.*/%0Aint+my_function(int+foo)+%7B%0A++return+foo%3B%0A%7D%0A'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:clang_trunk,deviceViewOpen:'1',filters:(b:'0',binary:'1',binaryObject:'1',commentOnly:'0',demangle:'0',directives:'0',execute:'1',intel:'0',libraryCode:'0',trim:'1'),flagsViewOpen:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,libs:!(),options:'--std%3Dc%2B%2B11',selection:(endColumn:1,endLineNumber:1,positionColumn:1,positionLineNumber:1,selectionStartColumn:1,selectionStartLineNumber:1,startColumn:1,startLineNumber:1),source:1),l:'5',n:'0',o:'+x86-64+clang+(trunk)+(Editor+%231)',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4">example
+        code</a>)
+    </div>
+</div>
+<div>
+    <h2>Or a <strong>function type alias</strong>:</h2>
+    <div class="syntax"><code><span class="ckeyword">using</span>
+        <span class="cidentifier">typeName</span> = <span class="ckeyword">returnType</span> (<span class="cparameters">parameterTypes</span>);</code></div>
+    <div class="example"> (<a id="function_pointer_typedef_example"
+                              href="https://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,selection:(endColumn:20,endLineNumber:11,positionColumn:20,positionLineNumber:11,selectionStartColumn:20,selectionStartLineNumber:11,startColumn:20,startLineNumber:11),source:'/*+Use+using+to+declare+the+name+%22my_function_t%22%0A+++as+an+alias+whose+type+is+a+function+that+takes%0A+++one+integer+argument+and+returns+an+integer+*/%0Ausing+my_function_t+%3D+int(int)%3B%0A%0A/*+Declare+a+simple+function+that+takes+one+integer%0A+++argument+and+returns+an+integer.+Here+we+use+the%0A+++type+alias+instead+of+typing+out+the+entire+signature.%0A+++This+may+look+a+bit+odd+to+some+developers.+Someone%0A+++more+used+to+function+pointer+typedefs+might+mistake%0A+++it+as+the+definition+of+a+function+pointer+variable.%0A+++So+I!'m+not+sure+I!'d+recommend+it.+But,+as+shown+%0A+++below,+it!'s+possible.+*/%0Astatic+my_function_t+my_function%3B%0A%0Aint+main(void)+%7B%0A++/*+Define+a+function+pointer+variable+and+point+it+to%0A+++++the+function.+*/%0A++my_function_t+*my_function_pointer+%3D+my_function%3B%0A++%0A++/*+Invoke+the+function+via+the+function+pointer.+*/%0A++return+my_function_pointer(0)%3B%0A%7D%0A%0A/*+Define+the+simple+%22my_function%22+function.+*/%0Astatic+int+my_function(int+foo)+%7B%0A++return+foo%3B%0A%7D%0A'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:compiler,i:(compiler:clang_trunk,deviceViewOpen:'1',filters:(b:'0',binary:'1',binaryObject:'1',commentOnly:'0',demangle:'0',directives:'0',execute:'1',intel:'0',libraryCode:'0',trim:'1'),flagsViewOpen:'1',fontScale:14,fontUsePx:'0',j:1,lang:c%2B%2B,libs:!(),options:'--std%3Dc%2B%2B11',selection:(endColumn:1,endLineNumber:1,positionColumn:1,positionLineNumber:1,selectionStartColumn:1,selectionStartLineNumber:1,startColumn:1,startLineNumber:1),source:1),l:'5',n:'0',o:'+x86-64+clang+(trunk)+(Editor+%231)',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4">example
+        code</a>)
+    </div>
+</div>
 <div class="disclaimer"> This site is not intended to be an exhaustive list of all possible uses of function
     pointers.<br> If you find yourself needing syntax not listed here, it is likely that a <strong>typedef</strong>
     would make your code more readable.<br> <br> Unable to access this site due to the profanity in the URL? <strong><a
